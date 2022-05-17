@@ -21,6 +21,7 @@ export default {
 <style lang="scss">
 @import 'assets/styles/general.scss';
 @import '~bootstrap/scss/bootstrap.scss';
+@import '~@fontsource/roboto/index.css';
 
 
 </style>

@@ -27,16 +27,30 @@ props:{
 @import '../assets/styles/vars';
 
 .my-container{
-    color:white;
+    color:rgb(128, 124, 121);
     width: calc(100% / 5 - 2vw);
     margin: 1vw;
     background-color: $secondary-color;
     padding: 1vw;
+    transition-duration: 500ms;
+    &:hover{
+        cursor: pointer;
+    }
+    &:active{
+        transform: scale(0.9);
+    }
 }
 .image{
     width: 100%;
     img{
         width: 100%;
     }
+}
+.title{
+    text-transform: uppercase;
+    color:white;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 15px;
 }
 </style>
