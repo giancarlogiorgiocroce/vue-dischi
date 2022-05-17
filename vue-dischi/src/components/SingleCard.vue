@@ -1,29 +1,42 @@
 <template>
-<div class="debug">
+<div class="my-container text-center">
     <div class="image">
-        <img alt="ughide">
+        <img :src="album.poster" :alt="album.title">
     </div>
     <div class="title">
-        Ugolandia
+        {{album.title}}
     </div>
     <div class="author">
-        <!-- {{album.author}} -->Ugo
+        {{album.author}}
+    </div>
+    <div class="year">
+        {{album.year}}
     </div>
 </div>  
 </template>
 
 <script>
 export default {
-// props:{
-//     album: Object,
-// }
+props:{
+    album: Object,
+}
 }
 </script>
 
 <style scoped lang="scss">
-div{
+@import '../assets/styles/vars';
+
+.my-container{
     color:white;
     width: calc(100% / 5 - 2vw);
     margin: 1vw;
+    background-color: $secondary-color;
+    padding: 1vw;
+}
+.image{
+    width: 100%;
+    img{
+        width: 100%;
+    }
 }
 </style>

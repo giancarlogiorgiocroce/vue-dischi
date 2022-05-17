@@ -1,10 +1,11 @@
 <template>
   <main>
       <div class="container">
-          <div class="row debug">
+          <div class="row">
               <SingleCard 
                 v-for="(el, i) in apiArray"
-                :key="i"/>
+                :key="i"
+                :album="el"/>
           </div>
       </div>
   </main>
@@ -31,7 +32,6 @@ export default {
             .then((res)=>{
                 this.apiArray = res.data.response;
                 console.log(this.apiArray);
-                // console.log(res.data.response);
             })
             .catch((e)=>{
                 return e;
@@ -47,6 +47,5 @@ main{
     background-color: $primary-color;
     min-height: calc(100vh - 75px);
     padding: 5vh;
-
 }
 </style>
