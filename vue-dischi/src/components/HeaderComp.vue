@@ -5,7 +5,7 @@
           <!-- <img src="" alt="LOGO SPOTIFY"> -->
       </div>
       <div class="dx">
-          <select name="" id="music_genre">
+          <select @change="chageGenre" name="" id="music_genre">
               <option value="0">Scegli il genere musicale</option>
               <option value="1">???</option>
               <option value="2">???</option>
@@ -17,7 +17,22 @@
 
 <script>
 export default {
-
+    data(){
+        return{
+            genreValue: '',
+        }
+    },
+    methods:{
+        chageGenre(value){
+            console.log(value.srcElement.value);
+            this.genreValue = value.srcElement.value;
+            console.log(this.genreValue);
+            this.$emit ('newGenre', this.genreValue);
+            // this.genreValue = this.value;
+            // console.log(genreValue);
+            // $emit ('newGenre', genreValue)
+        }
+    }
 }
 </script>
 

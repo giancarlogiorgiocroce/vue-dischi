@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <HeaderComp />
+    <!-- <HeaderComp /> -->
     <MainComp />
   </div>
 </template>
 
 <script>
-import HeaderComp from './components/HeaderComp.vue';
+// import HeaderComp from './components/HeaderComp.vue';
 import MainComp from './components/MainComp.vue';
 
 export default {
   name: 'App',
   components: {
-    HeaderComp,
+    // HeaderComp,
     MainComp
 }
 }
