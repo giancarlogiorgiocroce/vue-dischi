@@ -5,9 +5,13 @@
           <!-- <img src="" alt="LOGO SPOTIFY"> -->
       </div>
       <div class="dx">
-          <select @change="chageGenre" @click="genreArrayGenerator()" id="music_genre">
-              <option value="0">Scegli il genere musicale</option>
-              <option v-for="(el, i) in genreArray" :key="i" :value="el">{{el}}</option>
+          <select @change="changeGenre" @click="genreArrayGenerator()" id="music_genre">
+              <option value="0">Cerca per genere</option>
+              <option v-for="(el, i) in genreArray" :key="`genre${i}`" :value="el">{{el}}</option>
+          </select>
+            <select @change="changeAuthor"  @click="authorArrayGenerator()" id="music_author">
+              <option value="0">Cerca per autore</option>
+              <option v-for="(el, i) in authorArray" :key="`author${i}`" :value="el">{{el}}</option>
           </select>
       </div>
   </header>
@@ -21,15 +25,22 @@ export default {
     data(){
         return{
             genreValue: '',
+            authorValue: '',
             genreArray: [],
+            authorArray: [],
         }
     },
     methods:{
-        chageGenre(value){
+        changeGenre(value){
+            // console.log(value);
             this.genreValue = value.srcElement.value;
             // console.log(value.srcElement.value);
             this.$emit ('newGenre', this.genreValue);
             // console.log(this.genreValue);
+        },
+        changeAuthor(value){
+            this.authorValue = value.srcElement.value;
+            this.$emit ('newAuthor', this.authorValue);
         },
         genreArrayGenerator(){
             this.apiArray.forEach((obj) => {
@@ -37,6 +48,13 @@ export default {
                     this.genreArray.push(obj.genre);
                 }
             });
+        },
+        authorArrayGenerator(){
+            this.apiArray.forEach((obj)=>{
+                if(!this.authorArray.includes(obj.author)){
+                    this.authorArray.push(obj.author);
+                }
+            })
         }
     },
 }
@@ -50,6 +68,7 @@ header{
     background-color: $secondary-color;
 }
 select{
+    margin: 0 10px;
     padding: 5px;
     border-radius: 5px;
 }
