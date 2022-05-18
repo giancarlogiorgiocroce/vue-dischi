@@ -2,11 +2,11 @@
   <main>
       <div class="container">
           <div class="row">
-              <HeaderComp :newGenre="currentGenre" />
+              <HeaderComp @newGenre="changeGenre" />
           </div>
           <div class="row">
               <SingleCard 
-                v-for="(el, i) in apiArray"
+                v-for="(el, i) in filteredAlbumsByGenre"
                 :key="i"
                 :album="el"/>
           </div>
@@ -25,7 +25,7 @@ export default {
         return{
             apiUrl: 'https://flynn.boolean.careers/exercises/api/array/music',
             apiArray: {},
-            currentGenre: '',
+            currentGenreValue: '',
         }
     },
     mounted(){
@@ -42,11 +42,29 @@ export default {
                 return e;
             })
         },
-        newGenre(value){
-            this.currentGenre = value;
-            console.log(this.currentGenre);
+        changeGenre(value){
+            this.currentGenreValue = value;
+            // console.log(this.currentGenreValue);
         }
     },
+    computed:{
+        filteredAlbumsByGenre(){
+            let filteredArray = {};
+
+            if(this.currentGenreValue == 0){
+                filteredArray = this.apiArray;
+            } else{
+                filteredArray = this.apiArray.filter((el)=>{
+                    // console.log(this.currentGenreValue);
+                    return this.currentGenreValue == el.genre
+                    // console.log(el.genre);
+                })
+            }
+
+            // console.log('aray filtrato', filteredArray);
+            return filteredArray;
+        }
+    }
 }
 </script>
 
