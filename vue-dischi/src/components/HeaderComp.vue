@@ -5,12 +5,9 @@
           <!-- <img src="" alt="LOGO SPOTIFY"> -->
       </div>
       <div class="dx">
-          <select @change="chageGenre" id="music_genre">
+          <select @change="chageGenre" @click="genreArrayGenerator()" id="music_genre">
               <option value="0">Scegli il genere musicale</option>
-              <option value="Rock">Rock</option>
-              <option value="Pop">Pop</option>
-              <option value="Jazz">Jazz</option>
-              <option value="Metal">Metal</option>
+              <option v-for="(el, i) in genreArray" :key="i" :value="el">{{el}}</option>
           </select>
       </div>
   </header>
@@ -18,9 +15,13 @@
 
 <script>
 export default {
+    props:{
+        apiArray: Array,
+    },
     data(){
         return{
             genreValue: '',
+            genreArray: [],
         }
     },
     methods:{
@@ -29,8 +30,15 @@ export default {
             // console.log(value.srcElement.value);
             this.$emit ('newGenre', this.genreValue);
             // console.log(this.genreValue);
+        },
+        genreArrayGenerator(){
+            this.apiArray.forEach((obj) => {
+                if(!this.genreArray.includes(obj.genre)){
+                    this.genreArray.push(obj.genre);
+                }
+            });
         }
-    }
+    },
 }
 </script>
 

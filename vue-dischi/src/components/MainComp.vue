@@ -2,7 +2,9 @@
   <main>
       <div class="container">
           <div class="row">
-              <HeaderComp @newGenre="changeGenre" />
+              <HeaderComp 
+                :apiArray="this.apiArray"
+                @newGenre="changeGenre" />
           </div>
           <div class="row">
               <SingleCard 
@@ -15,16 +17,16 @@
 </template>
 
 <script>
-import SingleCard from './SingleCard.vue';
 import axios from 'axios';
 import HeaderComp from './HeaderComp.vue';
+import SingleCard from './SingleCard.vue';
 
 export default {
     components: { SingleCard, HeaderComp },
     data(){
         return{
             apiUrl: 'https://flynn.boolean.careers/exercises/api/array/music',
-            apiArray: {},
+            apiArray: [],
             currentGenreValue: '',
         }
     },
@@ -49,7 +51,7 @@ export default {
     },
     computed:{
         filteredAlbumsByGenre(){
-            let filteredArray = {};
+            let filteredArray = [];
 
             if(this.currentGenreValue == 0){
                 filteredArray = this.apiArray;
